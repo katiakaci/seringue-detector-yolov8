@@ -1,11 +1,21 @@
 import os
+import re
 
 def rename_jpg_files(directory, nameToChange):
     # Get a list of all .jpg files in the directory
+    match = re.match(r"(.*?)(\d+)$", nameToChange)
+    if not match:
+        print("Invalid base name format. It should end with a number.")
+        return
+    
+    base_name, start_number = match.groups()
+    start_number = int(start_number)
+    
+    # Trier les fichiers
     jpg_files = sorted([f for f in os.listdir(directory) if f.lower().endswith('.jpg')])
     
-    for index, filename in enumerate(jpg_files, start=1):
-        new_name = f"{nameToChange}{index}.jpg"
+    for index, filename in enumerate(jpg_files, start=start_number):
+        new_name = f"{base_name}{index}.jpg"
         old_path = os.path.join(directory, filename)
         new_path = os.path.join(directory, new_name)
         
