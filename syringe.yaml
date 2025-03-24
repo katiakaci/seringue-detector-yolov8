@@ -1,4 +1,4 @@
-path: C:/Users/Alex/Desktop/MTI805-Projet  # Root directory of dataset
+path: C:/Users/Alex/Desktop/MTI805-Projet  # C:/Users/katia/Desktop/GitHub/MTI805-Projet
 train: images/TrainingData  # Training images folder (relative to `path`)
 val: images/ValidationData  # Validation images folder (relative to `path`)
 nc: 1  # Number of classes
