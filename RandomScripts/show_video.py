@@ -3,7 +3,7 @@ from ultralytics import YOLO
 import os
 from datetime import datetime
 
-model = YOLO("C:/Users/katia/Desktop/GitHub/MTI805-Projet/runs/detect/train2/weights/best.pt") # Changer train2 par le modèle souhaité
+model = YOLO("C:/Users/katia/Desktop/GitHub/MTI805-Projet/runs/detect/train_yolov8x_50_epoch/weights/best.pt") # Changer train_yolov8n par le modèle souhaité
 
 # Dossier pour sauvegarder les seringues détectées
 ROOT_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
