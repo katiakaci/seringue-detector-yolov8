@@ -6,7 +6,7 @@ import os
 pytesseract.pytesseract.tesseract_cmd = 'C:/Users/katia/anaconda3/envs/mti/Library/bin/tesseract.exe'
 os.environ['TESSDATA_PREFIX'] = 'C:/Users/katia/anaconda3/envs/mti/share/tessdata'
 
-imagePath = "C:/Users/katia/Desktop/GitHub/MTI805-Projet/images/TestData/image.png"
+imagePath = "C:/Users/katia/Desktop/GitHub/MTI805-Projet/captures_seringues/24-03-2025_16h20m31s.jpg"
 image = cv2.cvtColor(cv2.imread(imagePath), cv2.COLOR_BGR2GRAY)
 
 # Performing OTSU threshold
@@ -45,16 +45,15 @@ with open(file_path, "w+", encoding="utf-8") as file:
 for cnt in contours:
     x, y, w, h = cv2.boundingRect(cnt)
     
-    # Drawing a rectangle on copied image
-    rect = cv2.rectangle(im2, (x, y), (x + w, y + h), (0, 255, 0), 2)
-    
     # Cropping the text block for giving input to OCR
     cropped = im2[y:y + h, x:x + w]
 
     # Apply OCR on the cropped image
     text = pytesseract.image_to_string(cropped)
     
-    # Appending the text into file
+    # Clean the text
+    text = text.replace("\n", " ").strip()
+    
     with open(file_path, "a", encoding="utf-8") as file:    
-        file.write(text)
-        file.write("\n")
+        if text:  # Avoid writing empty lines
+            file.write(text + "\n")
