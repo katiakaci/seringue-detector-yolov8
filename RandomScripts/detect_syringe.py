@@ -34,7 +34,7 @@ while cap.isOpened():
             # print(f"Seringue sauvegardée : {filename}")
 
     # Afficher l'image annotée
-    cv2.imshow("Détection de seringue", annotated_frame)
+    cv2.imshow("Detection de seringue", annotated_frame)
 
     # Quitter avec la touche 'q'
     if cv2.waitKey(1) & 0xFF == ord('q'):
