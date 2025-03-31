@@ -1,4 +1,3 @@
-# Import required packages
 import cv2
 import pytesseract
 import os
@@ -29,14 +28,20 @@ contours, hierarchy = cv2.findContours(dilation, cv2.RETR_EXTERNAL,
 im2 = image.copy()
 
 # A text file is created and flushed
-file = open("recognized.txt", "w+")
-file.write("")
-file.close()
-
 # Looping through the identified contours
 # Then rectangular part is cropped and passed on
 # to pytesseract for extracting text from it
 # Extracted text is then written into the text file
+results_folder = "C:/Users/katia/Desktop/GitHub/MTI805-Projet/results"
+if not os.path.exists(results_folder):
+    os.makedirs(results_folder)
+
+image_name = os.path.splitext(os.path.basename(imagePath))[0]
+file_path = os.path.join(results_folder, f"{image_name}_recognized.txt")
+
+with open(file_path, "w+", encoding="utf-8") as file:
+    file.write("")
+
 for cnt in contours:
     x, y, w, h = cv2.boundingRect(cnt)
     
@@ -45,16 +50,11 @@ for cnt in contours:
     
     # Cropping the text block for giving input to OCR
     cropped = im2[y:y + h, x:x + w]
-    
-    # Open the file in append mode
-    file = open("recognized.txt", "a")
-    
+
     # Apply OCR on the cropped image
     text = pytesseract.image_to_string(cropped)
     
     # Appending the text into file
-    file.write(text)
-    file.write("\n")
-    
-    # Close the file
-    file.close()
+    with open(file_path, "a", encoding="utf-8") as file:    
+        file.write(text)
+        file.write("\n")
