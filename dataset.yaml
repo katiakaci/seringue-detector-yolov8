@@ -2,4 +2,4 @@ train: C:\Users\Alex\Desktop\MTI805-Projet\train
 val: C:\Users\Alex\Desktop\MTI805-Projet\test
 
 names:
-    0: syringe
+    0: label
