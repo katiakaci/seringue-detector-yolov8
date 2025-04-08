@@ -2,7 +2,7 @@ import cv2
 from ultralytics import YOLO
 
 model = YOLO("best.pt")
-results = model.predict(source="TrainSyringe144.jpg", conf=0.5)
+results = model.predict(source="test2.jpg", conf=0.75)
 
 for r in results:
     img = r.orig_img.copy()

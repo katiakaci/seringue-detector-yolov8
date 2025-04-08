@@ -1,7 +1,0 @@
-path: \\?\C:\Users\Alex\Desktop\MTI805-Projet\images\TrainingData\YOLODataset
-train: images/train
-val: images/val
-test:
-
-names:
-    0: label
